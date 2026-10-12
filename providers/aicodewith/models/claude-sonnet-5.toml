@@ -1,7 +1,8 @@
 # Pricing source: https://aicodewith.ai/zh/models (accessed 2026-10-12); per 1M tokens, USD.
-# Limits/modalities/reasoning source: https://api.aicodewith.ai/models (accessed 2026-10-12).
+# Limits/modalities source: https://api.aicodewith.ai/models (accessed 2026-10-12).
+# Reasoning controls mirror providers/anthropic/models/claude-sonnet-5.toml (relay forwards the upstream request body).
 base_model = "anthropic/claude-sonnet-5"
-reasoning = false
+reasoning_options = [{ type = "toggle" }, { type = "effort", values = ["low", "medium", "high", "xhigh", "max"] }]
 
 [provider]
 npm = "@ai-sdk/anthropic"

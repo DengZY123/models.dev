@@ -1,7 +1,8 @@
 # Pricing source: https://aicodewith.ai/zh/models (accessed 2026-10-12); per 1M tokens, USD.
-# Limits/modalities/reasoning source: https://api.aicodewith.ai/models (accessed 2026-10-12).
+# Limits/modalities source: https://api.aicodewith.ai/models (accessed 2026-10-12).
+# Reasoning controls mirror providers/anthropic/models/claude-haiku-4-5-20251001.toml (relay forwards the upstream request body).
 base_model = "anthropic/claude-haiku-4-5-20251001"
-reasoning = false
+reasoning_options = [{ type = "budget_tokens", min = 1024 }]
 
 [provider]
 npm = "@ai-sdk/anthropic"
