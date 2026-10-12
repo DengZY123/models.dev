@@ -1,0 +1,19 @@
+# Pricing source: https://aicodewith.ai/zh/models (accessed 2026-10-12); per 1M tokens, USD.
+# Limits/modalities/reasoning source: https://api.aicodewith.ai/models (accessed 2026-10-12).
+# Upstream format is Gemini-native; OpenAI-compatible routing via /v1 is not verified.
+base_model = "google/gemini-3.1-pro-preview"
+# Reasoning controls exposed by this relay are not documented; left unverified.
+reasoning_options = []
+
+[cost]
+input = 2
+output = 12
+cache_read = 0.2
+
+[limit]
+context = 1_000_000
+output = 65_536
+
+[modalities]
+input = ["text", "image"]
+output = ["text"]

@@ -1,0 +1,23 @@
+# Pricing source: https://aicodewith.ai/zh/models (accessed 2026-10-12); per 1M tokens, USD.
+# Limits/modalities/reasoning source: https://api.aicodewith.ai/models (accessed 2026-10-12).
+base_model = "anthropic/claude-opus-5-5"
+# Reasoning controls exposed by this relay are not documented; left unverified.
+reasoning_options = []
+
+[provider]
+npm = "@ai-sdk/anthropic"
+api = "https://api.aicodewith.ai/v1"
+
+[cost]
+input = 4
+output = 20
+cache_read = 0.2
+cache_write = 5
+
+[limit]
+context = 200_000
+output = 128_000
+
+[modalities]
+input = ["text", "image"]
+output = ["text"]

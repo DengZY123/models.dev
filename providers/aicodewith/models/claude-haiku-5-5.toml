@@ -1,0 +1,24 @@
+# Pricing source: https://aicodewith.ai/zh/models (accessed 2026-10-12); per 1M tokens, USD.
+# Limits/modalities/reasoning source: https://api.aicodewith.ai/models (accessed 2026-10-12).
+# Above 100000 input tokens, higher long-context rates apply (input 0.5 / output 2.5).
+base_model = "anthropic/claude-haiku-5-5"
+# Reasoning controls exposed by this relay are not documented; left unverified.
+reasoning_options = []
+
+[provider]
+npm = "@ai-sdk/anthropic"
+api = "https://api.aicodewith.ai/v1"
+
+[cost]
+input = 0.1
+output = 0.5
+cache_read = 0.01
+cache_write = 0.125
+
+[limit]
+context = 200_000
+output = 128_000
+
+[modalities]
+input = ["text", "image"]
+output = ["text"]

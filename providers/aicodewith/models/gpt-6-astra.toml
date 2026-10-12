@@ -1,0 +1,24 @@
+# Pricing source: https://aicodewith.ai/zh/models (accessed 2026-10-12); per 1M tokens, USD.
+# Limits/modalities/reasoning source: https://api.aicodewith.ai/models (accessed 2026-10-12).
+# Above 272000 input tokens, higher long-context rates apply (input 20 / output 75).
+base_model = "openai/gpt-6-astra"
+# Reasoning controls exposed by this relay are not documented; left unverified.
+reasoning_options = []
+
+[provider]
+npm = "@ai-sdk/openai"
+api = "https://api.aicodewith.ai/v1"
+
+[cost]
+input = 10
+output = 50
+cache_read = 1
+cache_write = 12.5
+
+[limit]
+context = 1_050_000
+output = 128_000
+
+[modalities]
+input = ["text", "image"]
+output = ["text"]

@@ -1,0 +1,18 @@
+# Pricing source: https://aicodewith.ai/zh/models (accessed 2026-10-12); per 1M tokens, USD.
+# Limits/modalities/reasoning source: https://api.aicodewith.ai/models (accessed 2026-10-12).
+# Above 200000 input tokens, higher long-context rates apply (input 4 / output 12).
+base_model = "xai/grok-4.7"
+reasoning = false
+
+[cost]
+input = 2
+output = 6
+cache_read = 0.5
+
+[limit]
+context = 200_000
+output = 65_536
+
+[modalities]
+input = ["text"]
+output = ["text"]
