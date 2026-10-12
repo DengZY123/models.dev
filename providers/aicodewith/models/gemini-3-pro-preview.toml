@@ -1,8 +1,8 @@
 # Pricing source: https://aicodewith.ai/zh/models (accessed 2026-10-12); per 1M tokens, USD.
 # Limits/modalities source: https://api.aicodewith.ai/models (accessed 2026-10-12).
-# Reasoning controls mirror providers/anyapi/models/google/gemini-3-pro-preview.toml (relay forwards the upstream request body).
+# Reasoning controls mirror providers/merge-gateway/models/google/gemini-3-pro-preview.toml (relay forwards the upstream request body).
 base_model = "google/gemini-3-pro-preview"
-reasoning_options = []
+reasoning_options = [{ type = "effort", values = ["low", "high"] }]
 
 [cost]
 input = 2
