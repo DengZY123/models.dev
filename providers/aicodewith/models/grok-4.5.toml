@@ -1,5 +1,7 @@
 # Pricing source: https://aicodewith.ai/zh/models (accessed 2026-10-12); per 1M tokens, USD.
 # Limits/modalities source: https://api.aicodewith.ai/models (accessed 2026-10-12).
+# Context inherits xai lab (500K): the relay pricing data publishes long_context_threshold = 200000 with higher rates,
+# which only applies above 200K, so the catalog context_window = 200000 is not used as a cap. Output 65_536 per catalog.
 # Reasoning controls mirror providers/xai/models/grok-4.5.toml (relay forwards the upstream request body).
 base_model = "xai/grok-4.5"
 reasoning_options = [{ type = "effort", values = ["low", "medium", "high"] }]
@@ -16,7 +18,6 @@ output = 12
 cache_read = 0.6
 
 [limit]
-context = 200_000
 output = 65_536
 
 [modalities]
