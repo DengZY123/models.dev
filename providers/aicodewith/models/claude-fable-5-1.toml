@@ -1,0 +1,21 @@
+# Prices: https://aicodewith.ai/api/models (accessed 2026-11-20). USD per 1M tokens.
+# API: Anthropic Messages, https://docs.aicodewith.ai/zh/docs (POST https://api.aicodewith.ai/v1/messages).
+# Cache writes: cache_creation_price is the 5-minute write and cache_creation_1h_price is the 1-hour write.
+# Limits: https://api.aicodewith.ai/models (accessed 2026-11-20).
+schema = 2
+base_model = "anthropic/claude-fable-5-1"
+
+[capabilities]
+reasoning = { supported = true, effort = ["low", "medium", "high", "xhigh", "max"] }
+structured_output = true
+cache = { explicit = { ttl = ["5m", "1h"] } }
+
+[api.messages]
+sdk = { aisdk = "@ai-sdk/anthropic", opencodeai = "@opencode/ai/providers/anthropic-compatible" }
+
+[cost.text.input]
+price = 10
+cache = { read = 0.25, write = { "5m" = 12.5, "1h" = 20 } }
+
+[cost.text.output]
+price = 50

@@ -1,0 +1,29 @@
+# Prices: https://aicodewith.ai/api/models (accessed 2026-11-20). USD per 1M tokens.
+# API: OpenAI Chat Completions, https://docs.aicodewith.ai/zh/docs (POST https://api.aicodewith.ai/v1/chat/completions).
+# Context stays the lab window: pricing publishes a higher rate above 200k tokens, so the models API context_window of 200000 is the tier boundary, not the cap. Output is the models API max_output_tokens.
+schema = 2
+base_model = "xai/grok-4.6"
+
+[capabilities]
+reasoning = { supported = true, default = { type = "effort", value = "high" }, effort = ["low", "medium", "high", "xhigh"] }
+structured_output = true
+cache = { implicit = true }
+
+[limit]
+output = 65_536
+
+[cost.text.input]
+price = 2
+cache = { read = 0.5 }
+
+[[cost.text.input.overrides]]
+when = { context = { gt = 200_000 } }
+price = 4
+cache = { read = 1 }
+
+[cost.text.output]
+price = 6
+
+[[cost.text.output.overrides]]
+when = { context = { gt = 200_000 } }
+price = 12

@@ -1,0 +1,26 @@
+# Prices: https://aicodewith.ai/api/models (accessed 2026-11-20). USD per 1M tokens.
+# API: Gemini generateContent, https://docs.aicodewith.ai/zh/docs (base https://api.aicodewith.ai/gemini_cli, api version v1beta).
+# Cache: cache_read_price only; cache_creation_price is 0, so caching is implicit.
+# Limits: https://api.aicodewith.ai/models (accessed 2026-11-20).
+schema = 2
+base_model = "google/gemini-4-hydrogen"
+
+[capabilities]
+reasoning = { supported = true, default = { type = "effort", value = "high" }, effort = ["low", "medium", "high", "xhigh"] }
+structured_output = true
+cache = { implicit = true }
+
+[limit]
+context = 1_000_000
+output = 1_000_000
+
+[api.generate-content]
+base_url = "https://api.aicodewith.ai/gemini_cli/v1beta"
+sdk = { aisdk = "@ai-sdk/google", opencodeai = "@opencode/ai/providers/google" }
+
+[cost.text.input]
+price = 1.5
+cache = { read = 0.075 }
+
+[cost.text.output]
+price = 7.5

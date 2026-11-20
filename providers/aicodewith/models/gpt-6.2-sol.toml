@@ -1,0 +1,30 @@
+# Prices: https://aicodewith.ai/api/models (accessed 2026-11-20). USD per 1M tokens.
+# API: OpenAI Responses, https://docs.aicodewith.ai/zh/docs (POST https://api.aicodewith.ai/v1/responses).
+# Cache writes follow OpenAI's schedule: cache_creation_price is 1.25× input (30m) and cache_creation_1h_price, when present, is 2.5× input (12h).
+# Limits: https://api.aicodewith.ai/models (accessed 2026-11-20).
+schema = 2
+base_model = "openai/gpt-6.2-sol"
+
+[capabilities]
+reasoning = { supported = true, effort = ["low", "medium", "high", "xhigh", "max"] }
+structured_output = true
+cache = { implicit = true, explicit = { ttl = ["30m"] } }
+
+[api.responses]
+sdk = { aisdk = "@ai-sdk/openai", opencodeai = "@opencode/ai/providers/openai-compatible/responses" }
+
+[cost.text.input]
+price = 2
+cache = { read = 0.1, write = { "30m" = 2.5 } }
+
+[[cost.text.input.overrides]]
+when = { context = { gt = 272_000 } }
+price = 4
+cache = { read = 0.2, write = { "30m" = 5 } }
+
+[cost.text.output]
+price = 10
+
+[[cost.text.output.overrides]]
+when = { context = { gt = 272_000 } }
+price = 15

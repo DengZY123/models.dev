@@ -1,0 +1,24 @@
+# Prices: https://aicodewith.ai/api/models (accessed 2026-11-20). USD per 1M tokens.
+# API: Anthropic Messages, https://docs.aicodewith.ai/zh/docs (POST https://api.aicodewith.ai/v1/messages).
+# Cache writes: cache_creation_price is the 5-minute write and cache_creation_1h_price is the 1-hour write.
+# Limits for this id: https://api.aicodewith.ai/models. That catalog also lists claude-opus-5[1m] at 1,000,000 context with no separate price row, so the alias is not added.
+schema = 2
+base_model = "anthropic/claude-opus-5"
+
+[capabilities]
+reasoning = { supported = true, effort = ["low", "medium", "high", "xhigh", "max"] }
+structured_output = true
+cache = { explicit = { ttl = ["5m", "1h"] } }
+
+[limit]
+context = 200_000
+
+[api.messages]
+sdk = { aisdk = "@ai-sdk/anthropic", opencodeai = "@opencode/ai/providers/anthropic-compatible" }
+
+[cost.text.input]
+price = 5
+cache = { read = 0.5, write = { "5m" = 6.25, "1h" = 10 } }
+
+[cost.text.output]
+price = 25

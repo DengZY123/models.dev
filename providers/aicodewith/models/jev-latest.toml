@@ -1,0 +1,19 @@
+# Prices: https://aicodewith.ai/api/models (accessed 2026-11-20). USD per 1M tokens.
+# API: System One, https://api.aicodewith.ai/models api_format=systemone.
+# Output tokens are free. Decision model, published in v2 only, same as providers/typesafe.
+schema = 2
+base_model = "typesafe/jev-latest"
+name = "Jev Latest"
+v2_only = true
+
+[capabilities]
+structured_output = true
+
+[api.systemone]
+sdk = { aisdk = "@ai-sdk/typesafe-ai", opencodeai = "@opencode/ai/providers/typesafe-ai/decisions" }
+
+[cost.text.input]
+price = 0.042
+
+[cost.text.output]
+price = 0

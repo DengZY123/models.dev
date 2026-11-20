@@ -1,0 +1,27 @@
+# Prices: https://aicodewith.ai/api/models (accessed 2026-11-20). USD per 1M tokens.
+# Source amounts are CNY 20/100 per 1M tokens.
+# CNY→USD rate: 6.69198, 2026-11-20, source: https://open.er-api.com/v6/latest/USD
+# API: OpenAI Chat Completions, https://docs.aicodewith.ai/zh/docs (POST https://api.aicodewith.ai/v1/chat/completions).
+# Cache is automatic (cache_creation_price is 0). Reasoning controls match the lab provider on this API.
+# Limits: https://api.aicodewith.ai/models (accessed 2026-11-20).
+schema = 2
+base_model = "moonshotai/kimi-k3"
+
+[capabilities]
+reasoning = { supported = true, default = { type = "effort", value = "max" }, effort = ["low", "high", "max"] }
+structured_output = true
+cache = { implicit = true }
+
+[limit]
+context = 200_000
+output = 65_536
+
+[api.chat-completions]
+compatibility = { reasoning_field = "reasoning_content" }
+
+[cost.text.input]
+price = 2.98865
+cache = { read = 0.29887 }
+
+[cost.text.output]
+price = 14.94326

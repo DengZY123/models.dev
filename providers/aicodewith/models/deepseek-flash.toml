@@ -1,0 +1,34 @@
+# Toggle: thinking.type = enabled|disabled
+# Effort: reasoning_effort = low|high|max
+# Prices: https://aicodewith.ai/api/models (accessed 2026-11-20). USD per 1M tokens.
+# Source amounts are CNY 2/8 per 1M tokens.
+# CNY→USD rate: 6.69198, 2026-11-20, source: https://open.er-api.com/v6/latest/USD
+# Listed rate is peak (BJT 09:00-12:00 and 14:00-18:00). Off-peak is 0.5×, including cache reads.
+# API: OpenAI Chat Completions, https://docs.aicodewith.ai/zh/docs.
+# Cache is automatic (cache_creation_price is 0). Reasoning controls match providers/deepseek for this family.
+# Limits: https://api.aicodewith.ai/models (accessed 2026-11-20).
+schema = 2
+base_model = "deepseek/deepseek-v4.1-flash-1017"
+name = "DeepSeek V4.1 Flash"
+
+[capabilities]
+reasoning = { supported = true, default = { type = "effort", value = "high" }, toggle = true, effort = ["low", "high", "max"] }
+structured_output = true
+cache = { implicit = true }
+
+[limit]
+output = 393_216
+
+[api.chat-completions]
+compatibility = { reasoning_field = "reasoning_content" }
+
+[cost.text.input]
+price = 0.29887
+cache = { read = 0.00598 }
+
+[cost.text.output]
+price = 1.19546
+
+[[cost.multipliers]]
+when = { not = { any = [{ all = [{ utc_hours = { gte = "01:00" } }, { utc_hours = { lt = "04:00" } }] }, { all = [{ utc_hours = { gte = "06:00" } }, { utc_hours = { lt = "10:00" } }] }] } }
+factor = 0.5

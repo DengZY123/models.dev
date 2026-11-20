@@ -1,0 +1,13 @@
+# AI Code With is an API gateway for Claude, GPT, Gemini, Grok, DeepSeek, GLM, Kimi, MiniMax and Jev.
+# Catalog (ids, context, output): https://api.aicodewith.ai/models
+# Prices: https://aicodewith.ai/api/models and https://aicodewith.ai/zh/models (accessed 2026-11-20).
+# Docs: https://docs.aicodewith.ai/zh/docs
+# OpenAI Chat Completions and Responses use https://api.aicodewith.ai/v1.
+# Anthropic Messages uses the same /v1 base (POST /v1/messages). The raw Anthropic SDK, which appends /v1 itself, uses https://api.aicodewith.ai.
+# Gemini generateContent uses https://api.aicodewith.ai/gemini_cli with API version v1beta.
+name = "AI Code With"
+npm = "@ai-sdk/openai-compatible"
+opencodeai = "@opencode/ai/providers/openai-compatible"
+env = ["AICODEWITH_API_KEY"]
+api = "https://api.aicodewith.ai/v1"
+doc = "https://docs.aicodewith.ai/zh/docs"

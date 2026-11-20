@@ -1,0 +1,26 @@
+# Prices: https://aicodewith.ai/api/models (accessed 2026-11-20). USD per 1M tokens.
+# Source amounts are CNY 1/4 per 1M tokens.
+# CNY→USD rate: 6.69198, 2026-11-20, source: https://open.er-api.com/v6/latest/USD
+# API: OpenAI Chat Completions, https://docs.aicodewith.ai/zh/docs (POST https://api.aicodewith.ai/v1/chat/completions).
+# Cache is automatic (cache_creation_price is 0). Reasoning controls match the lab provider on this API.
+# Limits: https://api.aicodewith.ai/models (accessed 2026-11-20).
+schema = 2
+base_model = "minimax/MiniMax-M3.1-Flash"
+
+[capabilities]
+reasoning = { supported = true, default = { type = "effort", value = "max" }, effort = ["low", "medium", "high", "xhigh", "max"] }
+structured_output = false
+cache = { implicit = true }
+
+[limit]
+output = 131_072
+
+[api.chat-completions]
+compatibility = { reasoning_field = "reasoning_content" }
+
+[cost.text.input]
+price = 0.14943
+cache = { read = 0.01494 }
+
+[cost.text.output]
+price = 0.59773

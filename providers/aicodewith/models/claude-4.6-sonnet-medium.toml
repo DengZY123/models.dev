@@ -1,0 +1,26 @@
+# Budget: thinking.budget_tokens (integer reasoning tokens, min 1024)
+# Effort: output_config.effort = low|medium|high|max
+# Prices: https://aicodewith.ai/api/models (accessed 2026-11-20). USD per 1M tokens.
+# API: Anthropic Messages, https://docs.aicodewith.ai/zh/docs (POST https://api.aicodewith.ai/v1/messages).
+# Cache writes: cache_creation_price is the 5-minute write and cache_creation_1h_price is the 1-hour write.
+# Priced on https://aicodewith.ai/api/models and listed on https://aicodewith.ai/zh/models as Sonnet 4.6, but absent from https://api.aicodewith.ai/models. Same token prices as claude-sonnet-4-6. Context inherits the lab 1M window; output 128K is the models-page cap.
+schema = 2
+base_model = "anthropic/claude-sonnet-4-6"
+
+[capabilities]
+reasoning = { supported = true, effort = ["low", "medium", "high", "max"], budget = { min = 1_024 } }
+structured_output = true
+cache = { explicit = { ttl = ["5m", "1h"] } }
+
+[limit]
+output = 128_000
+
+[api.messages]
+sdk = { aisdk = "@ai-sdk/anthropic", opencodeai = "@opencode/ai/providers/anthropic-compatible" }
+
+[cost.text.input]
+price = 3
+cache = { read = 0.3, write = { "5m" = 3.75, "1h" = 6 } }
+
+[cost.text.output]
+price = 15

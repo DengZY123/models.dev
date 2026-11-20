@@ -1,0 +1,25 @@
+# Budget: thinking.budget_tokens (integer reasoning tokens, min 1024)
+# Prices: https://aicodewith.ai/api/models (accessed 2026-11-20). USD per 1M tokens.
+# API: Anthropic Messages, https://docs.aicodewith.ai/zh/docs (POST https://api.aicodewith.ai/v1/messages).
+# Cache writes: cache_creation_price is the 5-minute write and cache_creation_1h_price is the 1-hour write.
+# Limits: https://api.aicodewith.ai/models (accessed 2026-11-20).
+schema = 2
+base_model = "anthropic/claude-haiku-4-5-20251001"
+
+[capabilities]
+reasoning = { supported = true, budget = { min = 1_024 } }
+structured_output = true
+cache = { explicit = { ttl = ["5m", "1h"] } }
+
+[limit]
+output = 8192
+
+[api.messages]
+sdk = { aisdk = "@ai-sdk/anthropic", opencodeai = "@opencode/ai/providers/anthropic-compatible" }
+
+[cost.text.input]
+price = 1
+cache = { read = 0.1, write = { "5m" = 1.25, "1h" = 2 } }
+
+[cost.text.output]
+price = 5
